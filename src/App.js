@@ -1,21 +1,22 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Home from './containers/home';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+
 
 class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Pacer App</h1>
-        </header>
-        <p className="App-intro">
-          An app to calculate run/walk times and distance to help with race training.
-        </p>
-      </div>
-    );
-  }
+	render() {
+		return (
+			<MuiThemeProvider>
+				<div className="App">
+					<p className="App-intro">
+						An app to calculate run/walk times and distance to help with race training.
+					</p>
+					<Home />
+				</div>
+			</MuiThemeProvider>
+		);
+	}
 }
 
 export default App;
