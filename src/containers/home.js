@@ -22,7 +22,7 @@ export default class Home extends Component {
 
 	updateCalcs(eventTarget) {
 		const id = eventTarget.id.split('_')[1];
-		console.log("input id", id);
+		// console.log("input id", id);
 		switch (id) {
 			case 'runPace':
 				this.setState({ runPace: eventTarget.value });
@@ -68,6 +68,22 @@ export default class Home extends Component {
 						id="textField_walkPace"
 						floatingLabelText="Walk Pace (minutes/mile)"
 						value={this.state.walkPace}
+						onChange={ event => this.updateCalcs(event.target)}
+					/>
+				</div>
+				<div>
+					<TextField
+						id="textField_runIntervalTime"
+						floatingLabelText="Run Interval (minutes)"
+						value={this.state.runIntervalTime}
+						onChange={ event => this.updateCalcs(event.target)}
+					/>
+				</div>
+				<div>
+					<TextField
+						id="textField_walkIntervalTime"
+						floatingLabelText="Walk Interval (minutes)"
+						value={this.state.walkIntervalTime}
 						onChange={ event => this.updateCalcs(event.target)}
 					/>
 				</div>
