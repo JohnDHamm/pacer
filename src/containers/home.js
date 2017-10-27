@@ -7,16 +7,16 @@ export default class Home extends Component {
 		super(props);
 		this.state = {
 			runPace: 12.0,
-			walkPace: 16.5,
+			walkPace: 16.0,
 			runIntervalTime: 1.0,
 			walkIntervalTime: 2.0,
 			raceDistance: 26.2,
 			intervalDistance: null,
-			totalRaceTime: 0,
-			totalRunDistance: 0,
-			totalWalkDistance: 0,
-			totalRunTime: 0,
-			totalWalkTime: 0
+			totalRaceTime: null,
+			totalRunDistance: null,
+			totalWalkDistance: null,
+			totalRunTime: null,
+			totalWalkTime: null
 		}
 	}
 
@@ -49,8 +49,24 @@ export default class Home extends Component {
 		return runIntervalDist + walkIntervalDist;
 	}
 
+	calcTotalRaceTime() {
+		return ((this.state.runIntervalTime + this.state.walkIntervalTime) * ((this.state.raceDistance) / this.state.intervalDistance)) / 60;
+	}
+
 	updateCalcs() {
-		this.setState({ intervalDistance: this.calcIntervalDistance() });
+		//calc intervalDistance
+		const runIntervalDist = this.state.runIntervalTime * (1 / this.state.runPace);
+		const walkIntervalDist = this.state.walkIntervalTime * (1 / this.state.walkPace);
+		const intervalDistance =  runIntervalDist + walkIntervalDist;
+		this.setState({ intervalDistance: intervalDistance });
+		//calc totalRaceTime
+		console.log("this.state.runIntervalTime", this.state.runIntervalTime);
+		console.log("this.state.walkIntervalTime", this.state.walkIntervalTime);
+		console.log("this.state.raceDistance", this.state.raceDistance);
+		console.log("intervalDistance", intervalDistance);
+		const totalRaceTime = ((this.state.runIntervalTime + this.state.walkIntervalTime));
+		console.log("totalRaceTime", totalRaceTime);
+		this.setState({ totalRaceTime: totalRaceTime });
 	}
 
 	render() {
@@ -98,6 +114,9 @@ export default class Home extends Component {
 				</div>
 				<div>
 					<p>Interval distance: <span>{this.state.intervalDistance}</span></p>
+				</div>
+				<div>
+					<p>Total time (hours): <span>{this.state.totalRaceTime}</span></p>
 				</div>
 			</div>
 		)
