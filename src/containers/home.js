@@ -10,33 +10,29 @@ export default class Home extends Component {
 			walkPace: 16.0,
 			runIntervalTime: 1.0,
 			walkIntervalTime: 2.0,
-			raceDistance: 26.2,
-			intervalDistance: null,
-			totalRaceTime: null,
-			totalRunDistance: null,
-			totalWalkDistance: null,
-			totalRunTime: null,
-			totalWalkTime: null
+			raceDistance: 26.2
 		}
 	}
 
 	changeInput (eventTarget) {
 		const id = eventTarget.id.split('_')[1];
+		const numValue = Number(eventTarget.value);
+		// console.log("intValue", intValue);
 		switch (id) {
 			case 'runPace':
-				this.setState({ runPace: eventTarget.value }, () => this.updateCalcs());
+				this.setState({ runPace: numValue });
 				break;
 			case 'walkPace':
-				this.setState({ walkPace: eventTarget.value }, () => this.updateCalcs());
+				this.setState({ walkPace: numValue });
 				break;
 			case 'runIntervalTime':
-				this.setState({ runIntervalTime: eventTarget.value }, () => this.updateCalcs());
+				this.setState({ runIntervalTime: numValue });
 				break;
 			case 'walkIntervalTime':
-				this.setState({ walkIntervalTime: eventTarget.value }, () => this.updateCalcs());
+				this.setState({ walkIntervalTime: numValue });
 				break;
 			case 'raceDistance':
-				this.setState({ raceDistance: eventTarget.value }, () => this.updateCalcs());
+				this.setState({ raceDistance: numValue });
 				break;
 			default:
 				break;
@@ -46,36 +42,47 @@ export default class Home extends Component {
 	calcIntervalDistance() {
 		const runIntervalDist = this.state.runIntervalTime * (1 / this.state.runPace);
 		const walkIntervalDist = this.state.walkIntervalTime * (1 / this.state.walkPace);
-		return runIntervalDist + walkIntervalDist;
+		return (runIntervalDist + walkIntervalDist);
 	}
 
-	calcTotalRaceTime() {
-		return ((this.state.runIntervalTime + this.state.walkIntervalTime) * ((this.state.raceDistance) / this.state.intervalDistance)) / 60;
+	calcTotalRaceTime(intervalDistance) {
+		return (((this.state.runIntervalTime + this.state.walkIntervalTime) * (this.state.raceDistance / intervalDistance)) / 60).toFixed(2);
 	}
 
-	updateCalcs() {
-		//calc intervalDistance
+	calcTotalRunDistance(intervalDistance) {
 		const runIntervalDist = this.state.runIntervalTime * (1 / this.state.runPace);
+		return (runIntervalDist * (this.state.raceDistance / intervalDistance));
+	}
+
+	calcTotalWalkDistance(intervalDistance) {
 		const walkIntervalDist = this.state.walkIntervalTime * (1 / this.state.walkPace);
-		const intervalDistance =  runIntervalDist + walkIntervalDist;
-		this.setState({ intervalDistance: intervalDistance });
-		//calc totalRaceTime
-		console.log("this.state.runIntervalTime", this.state.runIntervalTime);
-		console.log("this.state.walkIntervalTime", this.state.walkIntervalTime);
-		console.log("this.state.raceDistance", this.state.raceDistance);
-		console.log("intervalDistance", intervalDistance);
-		const totalRaceTime = ((this.state.runIntervalTime + this.state.walkIntervalTime));
-		console.log("totalRaceTime", totalRaceTime);
-		this.setState({ totalRaceTime: totalRaceTime });
+		return (walkIntervalDist * (this.state.raceDistance / intervalDistance));
+	}
+
+	calcRunTime(totalRunDistance) {
+		return (totalRunDistance * this.state.runPace) / 60;
+	}
+
+	calcWalkTime(totalWalkDistance) {
+		return (totalWalkDistance * this.state.walkPace) / 60;
 	}
 
 	render() {
+		let { intervalDistance, totalRaceTime, totalRunDistance, totalWalkDistance, totalRunTime, totalWalkTime } = this.props;
+		intervalDistance = this.calcIntervalDistance();
+		totalRaceTime = this.calcTotalRaceTime(intervalDistance);
+		totalRunDistance = this.calcTotalRunDistance(intervalDistance);
+		totalWalkDistance = this.calcTotalWalkDistance(intervalDistance);
+		totalRunTime = this.calcRunTime(totalRunDistance);
+		totalWalkTime = this.calcWalkTime(totalWalkDistance);
+
 		return (
 			<div>
 				<div>
 					<TextField
 						id="textField_raceDistance"
 						floatingLabelText="Race Distance (miles)"
+						type='number'
 						value={this.state.raceDistance}
 						onChange={ event => this.changeInput(event.target)}
 					/>
@@ -84,6 +91,7 @@ export default class Home extends Component {
 					<TextField
 						id="textField_runPace"
 						floatingLabelText="Run Pace (minutes/mile)"
+						type='number'
 						value={this.state.runPace}
 						onChange={ event => this.changeInput(event.target)}
 					/>
@@ -92,6 +100,7 @@ export default class Home extends Component {
 					<TextField
 						id="textField_walkPace"
 						floatingLabelText="Walk Pace (minutes/mile)"
+						type='number'
 						value={this.state.walkPace}
 						onChange={ event => this.changeInput(event.target)}
 					/>
@@ -100,6 +109,7 @@ export default class Home extends Component {
 					<TextField
 						id="textField_runIntervalTime"
 						floatingLabelText="Run Interval (minutes)"
+						type='number'
 						value={this.state.runIntervalTime}
 						onChange={ event => this.changeInput(event.target)}
 					/>
@@ -108,15 +118,28 @@ export default class Home extends Component {
 					<TextField
 						id="textField_walkIntervalTime"
 						floatingLabelText="Walk Interval (minutes)"
+						type='number'
 						value={this.state.walkIntervalTime}
 						onChange={ event => this.changeInput(event.target)}
 					/>
 				</div>
 				<div>
-					<p>Interval distance: <span>{this.state.intervalDistance}</span></p>
+					<p>Interval distance: <span>{intervalDistance}</span> miles</p>
 				</div>
 				<div>
-					<p>Total time (hours): <span>{this.state.totalRaceTime}</span></p>
+					<p>Total time: <span>{totalRaceTime}</span> hours</p>
+				</div>
+				<div>
+					<p>Distance running: <span>{totalRunDistance}</span> miles</p>
+				</div>
+				<div>
+					<p>Distance walking: <span>{totalWalkDistance}</span> miles</p>
+				</div>
+				<div>
+					<p>Total time running: <span>{totalRunTime}</span> hours</p>
+				</div>
+				<div>
+					<p>Total time walking: <span>{totalWalkTime}</span> hours</p>
 				</div>
 			</div>
 		)
