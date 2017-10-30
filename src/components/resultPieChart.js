@@ -6,12 +6,12 @@ export default class resultPieChart extends Component {
 	render() {
 
 		const { data, title, metric, sum } = this.props;
-		const colors = ['red', 'green'];
+		const colors = ['#b22929', '#49bc58'];
 
 		const styles = {
 			container: {
 				position: 'relative',
-				border: '1px solid #666',
+				// border: '1px solid #666',
 				width: 300
 			},
 			title: {
@@ -24,7 +24,7 @@ export default class resultPieChart extends Component {
 				height: 90,
 				width: 90,
 				left: 150 - 45,
-				top: 150 - 68,
+				top: 150 - 67,
 				borderRadius: '50%',
 				backgroundColor: 'black'
 			},

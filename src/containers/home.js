@@ -65,8 +65,27 @@ export default class Home extends Component {
 		totalRunTime = calcObj.totalRunTime;
 		totalWalkTime = calcObj.totalWalkTime;
 
-		const intervalData = [{name: 'runIntervalDist', value: intervalRunDistance}, {name: 'walkIntervalDistance', value: intervalWalkDistance}];
+		const intervalData = [
+			{	name: 'runIntervalDist',
+				value: calcObj.intervalRunDistance },
+			{	name: 'walkIntervalDistance',
+				value: calcObj.intervalWalkDistance }
+		];
 		const intervalSum = (intervalRunDistance + intervalWalkDistance).toFixed(2);
+		const raceTimeData = [
+			{ name: 'runRaceTime',
+				value: calcObj.totalRunTime },
+			{ name: 'walkRaceTime',
+				value: calcObj.totalWalkTime }
+		];
+		const raceTimeSum = calcObj.totalRaceTime;
+		const raceDistanceData = [
+			{ name: 'runRaceTime',
+				value: calcObj.totalRunDistance },
+			{ name: 'walkRaceTime',
+				value: calcObj.totalWalkDistance }
+		];
+		const raceDistanceSum = this.state.raceDistance;
 
 		return (
 			<div>
@@ -120,6 +139,18 @@ export default class Home extends Component {
 					metric={'miles'}
 					data={intervalData}
 					sum={intervalSum}
+				/>
+				<ResultPieChart
+					title={'Race Time'}
+					metric={'hours'}
+					data={raceTimeData}
+					sum={raceTimeSum}
+				/>
+				<ResultPieChart
+					title={'Race Miles'}
+					metric={'miles'}
+					data={raceDistanceData}
+					sum={raceDistanceSum}
 				/>
 				<div>
 					<p>Interval distance: <span>{intervalDistance}</span> miles</p>
