@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
+import Slider from 'material-ui/Slider';
 import ResultPieChart from '../components/resultPieChart';
 
 export default class Home extends Component {
@@ -10,7 +11,7 @@ export default class Home extends Component {
 			walkPace: 16.0,
 			runIntervalTime: 1.0,
 			walkIntervalTime: 2.0,
-			raceDistance: 26.2
+			raceDistance: 13.1
 		}
 	}
 
@@ -36,6 +37,10 @@ export default class Home extends Component {
 			default:
 				break;
 		}
+	}
+
+	handleRaceDistSlider (event, value) {
+		this.setState({ raceDistance: value });
 	}
 
 	calc() {
@@ -101,6 +106,15 @@ export default class Home extends Component {
 		return (
 			<div>
 				<div>
+					<Slider
+						value={this.state.raceDistance}
+						defaultValue={this.state.raceDistance}
+						min={3.1}
+						max={26.2}
+						step={.1}
+						onChange={this.handleRaceDistSlider.bind(this)}
+						sliderStyle={{width: 400, marginBottom: 10, marginTop: 0}}
+					/>
 					<TextField
 						id="textField_raceDistance"
 						floatingLabelText="Race Distance (miles)"
