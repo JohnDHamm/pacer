@@ -6,7 +6,9 @@ export default class resultPieChart extends Component {
 	render() {
 
 		const { data, title, metric, sum } = this.props;
-		const colors = ['#b22929', '#49bc58'];
+		const walkColor = '#49bc58';
+		const runColor = '#b22929';
+		const colors = [runColor, walkColor];
 
 		const styles = {
 			container: {
@@ -16,7 +18,37 @@ export default class resultPieChart extends Component {
 			},
 			title: {
 				fontSize: 20,
-				color: '#666',
+				color: '#000',
+				margin: '0 auto'
+			},
+			walkTitleDiv: {
+				position: 'absolute',
+				top: 40,
+				left: 20
+			},
+			walkTitle: {
+				fontSize: 20,
+				color: walkColor,
+				margin: '0 auto'
+			},
+			walkNum: {
+				fontSize: 18,
+				color: walkColor,
+				margin: '0 auto'
+			},
+			runTitleDiv: {
+				position: 'absolute',
+				top: 40,
+				left: 225
+			},
+			runTitle: {
+				fontSize: 20,
+				color: runColor,
+				margin: '0 auto'
+			},
+			runNum: {
+				fontSize: 18,
+				color: runColor,
 				margin: '0 auto'
 			},
 			centerCircle: {
@@ -44,6 +76,18 @@ export default class resultPieChart extends Component {
 		return (
 			<div style={styles.container}>
 				<p style={styles.title}>{title} ({metric})</p>
+				<div style={styles.walkTitleDiv}>
+					<p style={styles.walkTitle}>WALK</p>
+					<p style={styles.walkNum}>
+						{data[1].value.toFixed(2)}
+					</p>
+				</div>
+				<div style={styles.runTitleDiv}>
+					<p style={styles.runTitle}>RUN</p>
+					<p style={styles.runNum}>
+						{data[0].value.toFixed(2)}
+					</p>
+				</div>
 				<PieChart width={300} height={200}>
 					<Pie
 						dataKey="value"
@@ -61,7 +105,9 @@ export default class resultPieChart extends Component {
 				</PieChart>
 				<div style={styles.centerCircle}>
 					<div style={styles.centerTextDiv}>
-						<p style={styles.centerText}>{sum}</p>
+						<p style={styles.centerText}>
+							{sum}
+						</p>
 					</div>
 				</div>
 			</div>
