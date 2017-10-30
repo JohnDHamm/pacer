@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import TextField from 'material-ui/TextField';
-
+import ResultPieChart from '../components/resultPieChart';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -65,6 +65,8 @@ export default class Home extends Component {
 		totalRunTime = calcObj.totalRunTime;
 		totalWalkTime = calcObj.totalWalkTime;
 
+		const intervalData = [{name: 'runIntervalDist', value: intervalRunDistance}, {name: 'walkIntervalDistance', value: intervalWalkDistance}];
+
 		return (
 			<div>
 				<div>
@@ -121,6 +123,11 @@ export default class Home extends Component {
 				<div>
 					<p>Interval walking distance: <span>{intervalWalkDistance}</span> miles</p>
 				</div>
+				<ResultPieChart
+					title={'Interval Distance'}
+					metric={'miles'}
+					data={intervalData}
+				/>
 				<div>
 					<p>Total time: <span>{totalRaceTime}</span> hours</p>
 				</div>
