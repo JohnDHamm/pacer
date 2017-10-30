@@ -103,25 +103,41 @@ export default class Home extends Component {
 		];
 		const raceDistanceSum = this.state.raceDistance;
 
+		const styles = {
+			sliderContainer: {
+
+			},
+			sliderTitle: {
+				fontSize: 15,
+				color: '#666',
+				marginBottom: 5,
+			},
+			sliderStyle: {
+				width: 300,
+				marginBottom: 10,
+				marginTop: 0,
+				marginLeft: 'auto',
+				marginRight: 'auto'
+			}
+		}
+
 		return (
 			<div>
 				<div>
-					<Slider
-						value={this.state.raceDistance}
-						defaultValue={this.state.raceDistance}
-						min={3.1}
-						max={26.2}
-						step={.1}
-						onChange={this.handleRaceDistSlider.bind(this)}
-						sliderStyle={{width: 400, marginBottom: 10, marginTop: 0}}
-					/>
-					<TextField
-						id="textField_raceDistance"
-						floatingLabelText="Race Distance (miles)"
-						type='number'
-						value={this.state.raceDistance}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Race Distance: {this.state.raceDistance}
+						</p>
+						<Slider
+							value={this.state.raceDistance}
+							defaultValue={this.state.raceDistance}
+							min={3.1}
+							max={26.2}
+							step={.1}
+							onChange={this.handleRaceDistSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
 					<TextField
