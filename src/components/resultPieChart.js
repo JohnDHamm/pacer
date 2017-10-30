@@ -11,7 +11,7 @@ export default class resultPieChart extends Component {
 		const colors = [runColor, walkColor];
 
 		const styles = {
-			container: {
+			pieContainer: {
 				position: 'relative',
 				// border: '1px solid #666',
 				width: 300
@@ -56,14 +56,14 @@ export default class resultPieChart extends Component {
 				height: 90,
 				width: 90,
 				left: 150 - 45,
-				top: 150 - 67,
+				top: 150 - 60,
 				borderRadius: '50%',
 				backgroundColor: 'black'
 			},
 			centerTextDiv: {
 				position: 'absolute',
 				width: 90,
-				top: 27,
+				top: 22,
 				// border: '1px dotted red'
 			},
 			centerText: {
@@ -74,7 +74,7 @@ export default class resultPieChart extends Component {
 		}
 
 		return (
-			<div style={styles.container}>
+			<div style={styles.pieContainer}>
 				<p style={styles.title}>{title} ({metric})</p>
 				<div style={styles.walkTitleDiv}>
 					<p style={styles.walkTitle}>WALK</p>

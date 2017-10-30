@@ -129,18 +129,18 @@ export default class Home extends Component {
 				marginBottom: 5,
 			},
 			sliderStyle: {
-				width: 300,
+				// width: 300,
 				marginBottom: 10,
 				marginTop: 0,
-				marginLeft: 'auto',
-				marginRight: 'auto'
+				// marginLeft: 'auto',
+				// marginRight: 'auto'
 			}
 		}
 
 		return (
-			<div>
-				<div>
-					<div style={styles.sliderContainer}>
+			<div className="container">
+				<div id="raceDistanceDiv" className="row">
+					<div className="col-lg-4 offset-lg-4">
 						<p style={styles.sliderTitle}>
 							Race Distance: {this.state.raceDistance} miles
 						</p>
@@ -155,8 +155,9 @@ export default class Home extends Component {
 						/>
 					</div>
 				</div>
-				<div>
-					<div style={styles.sliderContainer}>
+
+				<div className="row">
+					<div className="col-lg-4 offset-lg-2">
 						<p style={styles.sliderTitle}>
 							Run Pace: {this.state.runPace} mins/mile
 						</p>
@@ -170,25 +171,7 @@ export default class Home extends Component {
 							sliderStyle={styles.sliderStyle}
 						/>
 					</div>
-				</div>
-				<div>
-					<div style={styles.sliderContainer}>
-						<p style={styles.sliderTitle}>
-							Walk Pace: {this.state.walkPace} mins/mile
-						</p>
-						<Slider
-							value={this.state.walkPace}
-							defaultValue={this.state.walkPace}
-							min={14.00}
-							max={20.00}
-							step={.25}
-							onChange={this.handleWalkPaceSlider.bind(this)}
-							sliderStyle={styles.sliderStyle}
-						/>
-					</div>
-				</div>
-				<div>
-					<div style={styles.sliderContainer}>
+					<div className="col-lg-4">
 						<p style={styles.sliderTitle}>
 							Run Interval: {this.state.runIntervalTime} mins
 						</p>
@@ -203,8 +186,23 @@ export default class Home extends Component {
 						/>
 					</div>
 				</div>
-				<div>
-					<div style={styles.sliderContainer}>
+
+				<div className="row">
+					<div className="col-lg-4 offset-lg-2">
+						<p style={styles.sliderTitle}>
+							Walk Pace: {this.state.walkPace} mins/mile
+						</p>
+						<Slider
+							value={this.state.walkPace}
+							defaultValue={this.state.walkPace}
+							min={14.00}
+							max={20.00}
+							step={.25}
+							onChange={this.handleWalkPaceSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
+					<div className="col-lg-4">
 						<p style={styles.sliderTitle}>
 							Run Interval: {this.state.walkIntervalTime} mins
 						</p>
@@ -219,30 +217,38 @@ export default class Home extends Component {
 						/>
 					</div>
 				</div>
-				<ResultPieChart
-					title={'Interval Distance'}
-					metric={'miles'}
-					data={intervalData}
-					sum={intervalSum}
-					walkSum={calcObj.intervalWalkDistance.toFixed(2)}
-					runSum={calcObj.intervalRunDistance.toFixed(2)}
-				/>
-				<ResultPieChart
-					title={'Total Time'}
-					metric={'hours'}
-					data={timeData}
-					sum={raceTimeSum}
-					walkSum={walkTimeConvert}
-					runSum={runTimeConvert}
-				/>
-				<ResultPieChart
-					title={'Total Distance'}
-					metric={'miles'}
-					data={distanceData}
-					sum={raceDistanceSum}
-					walkSum={calcObj.totalWalkDistance.toFixed(2)}
-					runSum={calcObj.totalRunDistance.toFixed(2)}
-				/>
+				<div className="row">
+					<div className="col-lg-4">
+						<ResultPieChart
+							title={'Interval Distance'}
+							metric={'miles'}
+							data={intervalData}
+							sum={intervalSum}
+							walkSum={calcObj.intervalWalkDistance.toFixed(2)}
+							runSum={calcObj.intervalRunDistance.toFixed(2)}
+						/>
+					</div>
+					<div className="col-lg-4">
+						<ResultPieChart
+							title={'Total Time'}
+							metric={'hours'}
+							data={timeData}
+							sum={raceTimeSum}
+							walkSum={walkTimeConvert}
+							runSum={runTimeConvert}
+						/>
+					</div>
+					<div className="col-lg-4">
+						<ResultPieChart
+							title={'Total Distance'}
+							metric={'miles'}
+							data={distanceData}
+							sum={raceDistanceSum}
+							walkSum={calcObj.totalWalkDistance.toFixed(2)}
+							runSum={calcObj.totalRunDistance.toFixed(2)}
+						/>
+					</div>
+				</div>
 			</div>
 		)
 	}
