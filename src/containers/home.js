@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
+// import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import ResultPieChart from '../components/resultPieChart';
 
@@ -41,6 +41,22 @@ export default class Home extends Component {
 
 	handleRaceDistSlider (event, value) {
 		this.setState({ raceDistance: value });
+	}
+
+	handleRunPaceSlider (event, value) {
+		this.setState({ runPace: value });
+	}
+
+	handleWalkPaceSlider (event, value) {
+		this.setState({ walkPace: value });
+	}
+
+	handleRunIntervalSlider (event, value) {
+		this.setState({ runIntervalTime: value });
+	}
+
+	handleWalkIntervalSlider (event, value) {
+		this.setState({ walkIntervalTime: value });
 	}
 
 	calc() {
@@ -103,61 +119,105 @@ export default class Home extends Component {
 		];
 		const raceDistanceSum = this.state.raceDistance;
 
+		const styles = {
+			sliderContainer: {
+
+			},
+			sliderTitle: {
+				fontSize: 15,
+				color: '#666',
+				marginBottom: 5,
+			},
+			sliderStyle: {
+				width: 300,
+				marginBottom: 10,
+				marginTop: 0,
+				marginLeft: 'auto',
+				marginRight: 'auto'
+			}
+		}
+
 		return (
 			<div>
 				<div>
-					<Slider
-						value={this.state.raceDistance}
-						defaultValue={this.state.raceDistance}
-						min={3.1}
-						max={26.2}
-						step={.1}
-						onChange={this.handleRaceDistSlider.bind(this)}
-						sliderStyle={{width: 400, marginBottom: 10, marginTop: 0}}
-					/>
-					<TextField
-						id="textField_raceDistance"
-						floatingLabelText="Race Distance (miles)"
-						type='number'
-						value={this.state.raceDistance}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Race Distance: {this.state.raceDistance} miles
+						</p>
+						<Slider
+							value={this.state.raceDistance}
+							defaultValue={this.state.raceDistance}
+							min={3.1}
+							max={26.2}
+							step={.1}
+							onChange={this.handleRaceDistSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_runPace"
-						floatingLabelText="Run Pace (minutes/mile)"
-						type='number'
-						value={this.state.runPace}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Run Pace: {this.state.runPace} mins/mile
+						</p>
+						<Slider
+							value={this.state.runPace}
+							defaultValue={this.state.runPace}
+							min={8.00}
+							max={14.00}
+							step={.25}
+							onChange={this.handleRunPaceSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_walkPace"
-						floatingLabelText="Walk Pace (minutes/mile)"
-						type='number'
-						value={this.state.walkPace}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Walk Pace: {this.state.walkPace} mins/mile
+						</p>
+						<Slider
+							value={this.state.walkPace}
+							defaultValue={this.state.walkPace}
+							min={14.00}
+							max={20.00}
+							step={.25}
+							onChange={this.handleWalkPaceSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_runIntervalTime"
-						floatingLabelText="Run Interval (minutes)"
-						type='number'
-						value={this.state.runIntervalTime}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Run Interval: {this.state.runIntervalTime} mins
+						</p>
+						<Slider
+							value={this.state.runIntervalTime}
+							defaultValue={this.state.runIntervalTime}
+							min={0}
+							max={20.00}
+							step={.25}
+							onChange={this.handleRunIntervalSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_walkIntervalTime"
-						floatingLabelText="Walk Interval (minutes)"
-						type='number'
-						value={this.state.walkIntervalTime}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Run Interval: {this.state.walkIntervalTime} mins
+						</p>
+						<Slider
+							value={this.state.walkIntervalTime}
+							defaultValue={this.state.walkIntervalTime}
+							min={0}
+							max={20.00}
+							step={.25}
+							onChange={this.handleWalkIntervalSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<ResultPieChart
 					title={'Interval Distance'}
