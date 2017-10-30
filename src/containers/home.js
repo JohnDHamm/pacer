@@ -42,7 +42,7 @@ export default class Home extends Component {
 		const intervalRunDistance = this.state.runIntervalTime * (1 / this.state.runPace);
 		const intervalWalkDistance = this.state.walkIntervalTime * (1 / this.state.walkPace);
 		const intervalDistance = intervalRunDistance + intervalWalkDistance;
-		const totalRaceTime = (((this.state.runIntervalTime + this.state.walkIntervalTime) * (this.state.raceDistance / intervalDistance)) / 60).toFixed(2);
+		const totalRaceTime = ((this.state.runIntervalTime + this.state.walkIntervalTime) * (this.state.raceDistance / intervalDistance)) / 60;
 		const totalRunDistance = intervalRunDistance * (this.state.raceDistance / intervalDistance);
 		const totalWalkDistance = intervalWalkDistance * (this.state.raceDistance / intervalDistance);
 		const totalRunTime = (totalRunDistance * this.state.runPace) / 60;
@@ -52,11 +52,20 @@ export default class Home extends Component {
 		return calcObj;
 	}
 
-	timeConvert(timeInt) {
+	timeConvert(timeInt, sumCalc) {
 		const hours = parseInt(timeInt, 10);
 		const mmss = (timeInt - hours) * 60;
-		const minutes = parseInt(mmss, 10);
-		const seconds = parseInt((mmss - minutes) * 60, 10);
+		let minutes = parseInt(mmss, 10);
+		if (minutes < 10) {
+			minutes = `0${minutes}`;
+		}
+		let seconds = parseInt((mmss - minutes) * 60, 10);
+		if (seconds < 10) {
+			seconds = `0${seconds}`;
+		}
+		if (sumCalc) {
+			return `${hours}:${minutes}`;
+		}
 		return `${hours}:${minutes}:${seconds}`;
 	}
 
@@ -71,19 +80,17 @@ export default class Home extends Component {
 		];
 		const intervalSum = (calcObj.intervalRunDistance + calcObj.intervalWalkDistance).toFixed(2);
 
-		const raceTimeData = [
-			{ name: 'runRaceTime',
+		const timeData = [
+			{ name: 'runTime',
 				value: calcObj.totalRunTime },
-			{ name: 'walkRaceTime',
+			{ name: 'walkTime',
 				value: calcObj.totalWalkTime }
 		];
-		// const raceTimeSum = calcObj.totalRaceTime;
-		const raceTimeSum = this.timeConvert(calcObj.totalRaceTime);
-		// console.log("raceTimeSumConvert", raceTimeSumConvert);
-		// const runTimeConvert = this.timeConvert(calcObj.totalRunTime);
-		// const walkTimeConvert = this.timeConvert(calcObj.totalWalkTime);
+		const raceTimeSum = this.timeConvert(calcObj.totalRaceTime, true);
+		const runTimeConvert = this.timeConvert(calcObj.totalRunTime);
+		const walkTimeConvert = this.timeConvert(calcObj.totalWalkTime);
 
-		const raceDistanceData = [
+		const distanceData = [
 			{ name: 'runRaceTime',
 				value: calcObj.totalRunDistance },
 			{ name: 'walkRaceTime',
@@ -149,15 +156,15 @@ export default class Home extends Component {
 				<ResultPieChart
 					title={'Total Time'}
 					metric={'hours'}
-					data={raceTimeData}
+					data={timeData}
 					sum={raceTimeSum}
-					walkSum={calcObj.totalWalkTime.toFixed(2)}
-					runSum={calcObj.totalRunTime.toFixed(2)}
+					walkSum={walkTimeConvert}
+					runSum={runTimeConvert}
 				/>
 				<ResultPieChart
 					title={'Total Distance'}
 					metric={'miles'}
-					data={raceDistanceData}
+					data={distanceData}
 					sum={raceDistanceSum}
 					walkSum={calcObj.totalWalkDistance.toFixed(2)}
 					runSum={calcObj.totalRunDistance.toFixed(2)}
@@ -166,28 +173,3 @@ export default class Home extends Component {
 		)
 	}
 }
-
-				// <div>
-				// 	<p>Interval distance: <span>{intervalDistance}</span> miles</p>
-				// </div>
-				// <div>
-				// 	<p>Interval running distance: <span>{intervalRunDistance}</span> miles</p>
-				// </div>
-				// <div>
-				// 	<p>Interval walking distance: <span>{intervalWalkDistance}</span> miles</p>
-				// </div>
-				// <div>
-				// 	<p>Total time: <span>{totalRaceTime}</span> hours</p>
-				// </div>
-				// <div>
-				// 	<p>Distance running: <span>{totalRunDistance}</span> miles</p>
-				// </div>
-				// <div>
-				// 	<p>Distance walking: <span>{totalWalkDistance}</span> miles</p>
-				// </div>
-				// <div>
-				// 	<p>Total time running: <span>{totalRunTime}</span> hours</p>
-				// </div>
-				// <div>
-				// 	<p>Total time walking: <span>{totalWalkTime}</span> hours</p>
-				// </div>
