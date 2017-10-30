@@ -52,18 +52,16 @@ export default class Home extends Component {
 		return calcObj;
 	}
 
-	render() {
-		let { intervalDistance, intervalRunDistance, intervalWalkDistance, totalRaceTime, totalRunDistance, totalWalkDistance, totalRunTime, totalWalkTime } = this.props;
+	timeConvert(timeInt) {
+		const hours = parseInt(timeInt, 10);
+		const mmss = (timeInt - hours) * 60;
+		const minutes = parseInt(mmss, 10);
+		const seconds = parseInt((mmss - minutes) * 60, 10);
+		return `${hours}:${minutes}:${seconds}`;
+	}
 
+	render() {
 		const calcObj = this.calc();
-		intervalRunDistance = calcObj.intervalRunDistance;
-		intervalWalkDistance = calcObj.intervalWalkDistance;
-		intervalDistance = calcObj.intervalDistance;
-		totalRaceTime = calcObj.totalRaceTime;
-		totalRunDistance = calcObj.totalRunDistance;
-		totalWalkDistance = calcObj.totalWalkDistance;
-		totalRunTime = calcObj.totalRunTime;
-		totalWalkTime = calcObj.totalWalkTime;
 
 		const intervalData = [
 			{	name: 'runIntervalDist',
@@ -71,14 +69,20 @@ export default class Home extends Component {
 			{	name: 'walkIntervalDistance',
 				value: calcObj.intervalWalkDistance }
 		];
-		const intervalSum = (intervalRunDistance + intervalWalkDistance).toFixed(2);
+		const intervalSum = (calcObj.intervalRunDistance + calcObj.intervalWalkDistance).toFixed(2);
+
 		const raceTimeData = [
 			{ name: 'runRaceTime',
 				value: calcObj.totalRunTime },
 			{ name: 'walkRaceTime',
 				value: calcObj.totalWalkTime }
 		];
-		const raceTimeSum = calcObj.totalRaceTime;
+		// const raceTimeSum = calcObj.totalRaceTime;
+		const raceTimeSum = this.timeConvert(calcObj.totalRaceTime);
+		// console.log("raceTimeSumConvert", raceTimeSumConvert);
+		// const runTimeConvert = this.timeConvert(calcObj.totalRunTime);
+		// const walkTimeConvert = this.timeConvert(calcObj.totalWalkTime);
+
 		const raceDistanceData = [
 			{ name: 'runRaceTime',
 				value: calcObj.totalRunDistance },
@@ -158,31 +162,32 @@ export default class Home extends Component {
 					walkSum={calcObj.totalWalkDistance.toFixed(2)}
 					runSum={calcObj.totalRunDistance.toFixed(2)}
 				/>
-				<div>
-					<p>Interval distance: <span>{intervalDistance}</span> miles</p>
-				</div>
-				<div>
-					<p>Interval running distance: <span>{intervalRunDistance}</span> miles</p>
-				</div>
-				<div>
-					<p>Interval walking distance: <span>{intervalWalkDistance}</span> miles</p>
-				</div>
-				<div>
-					<p>Total time: <span>{totalRaceTime}</span> hours</p>
-				</div>
-				<div>
-					<p>Distance running: <span>{totalRunDistance}</span> miles</p>
-				</div>
-				<div>
-					<p>Distance walking: <span>{totalWalkDistance}</span> miles</p>
-				</div>
-				<div>
-					<p>Total time running: <span>{totalRunTime}</span> hours</p>
-				</div>
-				<div>
-					<p>Total time walking: <span>{totalWalkTime}</span> hours</p>
-				</div>
 			</div>
 		)
 	}
 }
+
+				// <div>
+				// 	<p>Interval distance: <span>{intervalDistance}</span> miles</p>
+				// </div>
+				// <div>
+				// 	<p>Interval running distance: <span>{intervalRunDistance}</span> miles</p>
+				// </div>
+				// <div>
+				// 	<p>Interval walking distance: <span>{intervalWalkDistance}</span> miles</p>
+				// </div>
+				// <div>
+				// 	<p>Total time: <span>{totalRaceTime}</span> hours</p>
+				// </div>
+				// <div>
+				// 	<p>Distance running: <span>{totalRunDistance}</span> miles</p>
+				// </div>
+				// <div>
+				// 	<p>Distance walking: <span>{totalWalkDistance}</span> miles</p>
+				// </div>
+				// <div>
+				// 	<p>Total time running: <span>{totalRunTime}</span> hours</p>
+				// </div>
+				// <div>
+				// 	<p>Total time walking: <span>{totalWalkTime}</span> hours</p>
+				// </div>
