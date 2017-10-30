@@ -139,18 +139,24 @@ export default class Home extends Component {
 					metric={'miles'}
 					data={intervalData}
 					sum={intervalSum}
+					walkSum={calcObj.intervalWalkDistance.toFixed(2)}
+					runSum={calcObj.intervalRunDistance.toFixed(2)}
 				/>
 				<ResultPieChart
-					title={'Race Time'}
+					title={'Total Time'}
 					metric={'hours'}
 					data={raceTimeData}
 					sum={raceTimeSum}
+					walkSum={calcObj.totalWalkTime.toFixed(2)}
+					runSum={calcObj.totalRunTime.toFixed(2)}
 				/>
 				<ResultPieChart
-					title={'Race Miles'}
+					title={'Total Distance'}
 					metric={'miles'}
 					data={raceDistanceData}
 					sum={raceDistanceSum}
+					walkSum={calcObj.totalWalkDistance.toFixed(2)}
+					runSum={calcObj.totalRunDistance.toFixed(2)}
 				/>
 				<div>
 					<p>Interval distance: <span>{intervalDistance}</span> miles</p>

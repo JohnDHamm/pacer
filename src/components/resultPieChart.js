@@ -5,7 +5,7 @@ export default class resultPieChart extends Component {
 
 	render() {
 
-		const { data, title, metric, sum } = this.props;
+		const { data, title, metric, sum, walkSum, runSum } = this.props;
 		const walkColor = '#49bc58';
 		const runColor = '#b22929';
 		const colors = [runColor, walkColor];
@@ -79,13 +79,13 @@ export default class resultPieChart extends Component {
 				<div style={styles.walkTitleDiv}>
 					<p style={styles.walkTitle}>WALK</p>
 					<p style={styles.walkNum}>
-						{data[1].value.toFixed(2)}
+						{walkSum}
 					</p>
 				</div>
 				<div style={styles.runTitleDiv}>
 					<p style={styles.runTitle}>RUN</p>
 					<p style={styles.runNum}>
-						{data[0].value.toFixed(2)}
+						{runSum}
 					</p>
 				</div>
 				<PieChart width={300} height={200}>
