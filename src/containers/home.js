@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import TextField from 'material-ui/TextField';
+// import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import ResultPieChart from '../components/resultPieChart';
 
@@ -49,6 +49,14 @@ export default class Home extends Component {
 
 	handleWalkPaceSlider (event, value) {
 		this.setState({ walkPace: value });
+	}
+
+	handleRunIntervalSlider (event, value) {
+		this.setState({ runIntervalTime: value });
+	}
+
+	handleWalkIntervalSlider (event, value) {
+		this.setState({ walkIntervalTime: value });
 	}
 
 	calc() {
@@ -180,22 +188,36 @@ export default class Home extends Component {
 					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_runIntervalTime"
-						floatingLabelText="Run Interval (minutes)"
-						type='number'
-						value={this.state.runIntervalTime}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Run Interval: {this.state.runIntervalTime} mins
+						</p>
+						<Slider
+							value={this.state.runIntervalTime}
+							defaultValue={this.state.runIntervalTime}
+							min={0}
+							max={20.00}
+							step={.25}
+							onChange={this.handleRunIntervalSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_walkIntervalTime"
-						floatingLabelText="Walk Interval (minutes)"
-						type='number'
-						value={this.state.walkIntervalTime}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Run Interval: {this.state.walkIntervalTime} mins
+						</p>
+						<Slider
+							value={this.state.walkIntervalTime}
+							defaultValue={this.state.walkIntervalTime}
+							min={0}
+							max={20.00}
+							step={.25}
+							onChange={this.handleWalkIntervalSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<ResultPieChart
 					title={'Interval Distance'}
