@@ -66,6 +66,7 @@ export default class Home extends Component {
 		totalWalkTime = calcObj.totalWalkTime;
 
 		const intervalData = [{name: 'runIntervalDist', value: intervalRunDistance}, {name: 'walkIntervalDistance', value: intervalWalkDistance}];
+		const intervalSum = (intervalRunDistance + intervalWalkDistance).toFixed(2);
 
 		return (
 			<div>
@@ -114,6 +115,12 @@ export default class Home extends Component {
 						onChange={ event => this.changeInput(event.target)}
 					/>
 				</div>
+				<ResultPieChart
+					title={'Interval Distance'}
+					metric={'miles'}
+					data={intervalData}
+					sum={intervalSum}
+				/>
 				<div>
 					<p>Interval distance: <span>{intervalDistance}</span> miles</p>
 				</div>
@@ -123,11 +130,6 @@ export default class Home extends Component {
 				<div>
 					<p>Interval walking distance: <span>{intervalWalkDistance}</span> miles</p>
 				</div>
-				<ResultPieChart
-					title={'Interval Distance'}
-					metric={'miles'}
-					data={intervalData}
-				/>
 				<div>
 					<p>Total time: <span>{totalRaceTime}</span> hours</p>
 				</div>

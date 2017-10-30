@@ -5,8 +5,7 @@ export default class resultPieChart extends Component {
 
 	render() {
 
-		const { data, title, metric } = this.props;
-		// const data = [{name: 'runDist', value: 1.18}, {name: 'walkDist', value: 2.17}]
+		const { data, title, metric, sum } = this.props;
 		const colors = ['red', 'green'];
 
 		const styles = {
@@ -62,7 +61,7 @@ export default class resultPieChart extends Component {
 				</PieChart>
 				<div style={styles.centerCircle}>
 					<div style={styles.centerTextDiv}>
-						<p style={styles.centerText}>1.25</p>
+						<p style={styles.centerText}>{sum}</p>
 					</div>
 				</div>
 			</div>
@@ -70,16 +69,3 @@ export default class resultPieChart extends Component {
 	}
 }
 
-/* DATA ex
-	[{name: runDist, value: 0.08}, {name: walkDist, value: 2.17}]
-
-	COLORS = ['{runColor}', '{walkColor']
-
-	props:
-	title="Interval distance" / "Race time"
-	runSum="0.08 miles" / "0:26:10"
-	walkSum="2.17 miles" / "1:04:27"
-	sum="2.50" / "1:30:37"
-	metric="miles" / ""
-
-*/
