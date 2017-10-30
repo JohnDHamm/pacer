@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-// import TextField from 'material-ui/TextField';
 import Slider from 'material-ui/Slider';
 import ResultPieChart from '../components/resultPieChart';
 
@@ -10,32 +9,8 @@ export default class Home extends Component {
 			runPace: 12.0,
 			walkPace: 16.0,
 			runIntervalTime: 1.0,
-			walkIntervalTime: 2.0,
-			raceDistance: 13.1
-		}
-	}
-
-	changeInput (eventTarget) {
-		const id = eventTarget.id.split('_')[1];
-		const numValue = Number(eventTarget.value);
-		switch (id) {
-			case 'runPace':
-				this.setState({ runPace: numValue });
-				break;
-			case 'walkPace':
-				this.setState({ walkPace: numValue });
-				break;
-			case 'runIntervalTime':
-				this.setState({ runIntervalTime: numValue });
-				break;
-			case 'walkIntervalTime':
-				this.setState({ walkIntervalTime: numValue });
-				break;
-			case 'raceDistance':
-				this.setState({ raceDistance: numValue });
-				break;
-			default:
-				break;
+			walkIntervalTime: 2.5,
+			raceDistance: 26.2
 		}
 	}
 
@@ -120,20 +95,21 @@ export default class Home extends Component {
 		const raceDistanceSum = this.state.raceDistance;
 
 		const styles = {
-			sliderContainer: {
-
-			},
 			sliderTitle: {
 				fontSize: 15,
 				color: '#666',
 				marginBottom: 5,
 			},
 			sliderStyle: {
-				// width: 300,
-				marginBottom: 10,
-				marginTop: 0,
-				// marginLeft: 'auto',
-				// marginRight: 'auto'
+				marginBottom: 20,
+				marginTop: 5,
+			},
+			seperator: {
+				borderTop: '1px solid #888',
+				borderBottom: '1px solid #888',
+				color: '#888',
+				marginTop: 20,
+				marginBottom: 20
 			}
 		}
 
@@ -155,7 +131,6 @@ export default class Home extends Component {
 						/>
 					</div>
 				</div>
-
 				<div className="row">
 					<div className="col-lg-4 offset-lg-2">
 						<p style={styles.sliderTitle}>
@@ -186,7 +161,6 @@ export default class Home extends Component {
 						/>
 					</div>
 				</div>
-
 				<div className="row">
 					<div className="col-lg-4 offset-lg-2">
 						<p style={styles.sliderTitle}>
@@ -204,7 +178,7 @@ export default class Home extends Component {
 					</div>
 					<div className="col-lg-4">
 						<p style={styles.sliderTitle}>
-							Run Interval: {this.state.walkIntervalTime} mins
+							Walk Interval: {this.state.walkIntervalTime} mins
 						</p>
 						<Slider
 							value={this.state.walkIntervalTime}
@@ -218,6 +192,11 @@ export default class Home extends Component {
 					</div>
 				</div>
 				<div className="row">
+					<div className="col-12">
+						<div style={styles.seperator}>RESULTS</div>
+					</div>
+				</div>
+				<div id="resultsDiv" className="row">
 					<div className="col-lg-4">
 						<ResultPieChart
 							title={'Interval Distance'}

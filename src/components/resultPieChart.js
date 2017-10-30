@@ -13,7 +13,6 @@ export default class resultPieChart extends Component {
 		const styles = {
 			pieContainer: {
 				position: 'relative',
-				// border: '1px solid #666',
 				width: 300
 			},
 			title: {
@@ -23,7 +22,7 @@ export default class resultPieChart extends Component {
 			},
 			walkTitleDiv: {
 				position: 'absolute',
-				top: 40,
+				top: 5,
 				left: 20
 			},
 			walkTitle: {
@@ -38,7 +37,7 @@ export default class resultPieChart extends Component {
 			},
 			runTitleDiv: {
 				position: 'absolute',
-				top: 40,
+				top: 5,
 				left: 225
 			},
 			runTitle: {
@@ -56,7 +55,7 @@ export default class resultPieChart extends Component {
 				height: 90,
 				width: 90,
 				left: 150 - 45,
-				top: 150 - 60,
+				top: 150 - 90,
 				borderRadius: '50%',
 				backgroundColor: 'black'
 			},
@@ -64,7 +63,6 @@ export default class resultPieChart extends Component {
 				position: 'absolute',
 				width: 90,
 				top: 22,
-				// border: '1px dotted red'
 			},
 			centerText: {
 				fontSize: 30,
@@ -75,7 +73,6 @@ export default class resultPieChart extends Component {
 
 		return (
 			<div style={styles.pieContainer}>
-				<p style={styles.title}>{title} ({metric})</p>
 				<div style={styles.walkTitleDiv}>
 					<p style={styles.walkTitle}>WALK</p>
 					<p style={styles.walkNum}>
@@ -110,6 +107,7 @@ export default class resultPieChart extends Component {
 						</p>
 					</div>
 				</div>
+				<p style={styles.title}>{title} ({metric})</p>
 			</div>
 		)
 	}
