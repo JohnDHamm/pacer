@@ -43,6 +43,14 @@ export default class Home extends Component {
 		this.setState({ raceDistance: value });
 	}
 
+	handleRunPaceSlider (event, value) {
+		this.setState({ runPace: value });
+	}
+
+	handleWalkPaceSlider (event, value) {
+		this.setState({ walkPace: value });
+	}
+
 	calc() {
 		const intervalRunDistance = this.state.runIntervalTime * (1 / this.state.runPace);
 		const intervalWalkDistance = this.state.walkIntervalTime * (1 / this.state.walkPace);
@@ -126,7 +134,7 @@ export default class Home extends Component {
 				<div>
 					<div style={styles.sliderContainer}>
 						<p style={styles.sliderTitle}>
-							Race Distance: {this.state.raceDistance}
+							Race Distance: {this.state.raceDistance} miles
 						</p>
 						<Slider
 							value={this.state.raceDistance}
@@ -140,22 +148,36 @@ export default class Home extends Component {
 					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_runPace"
-						floatingLabelText="Run Pace (minutes/mile)"
-						type='number'
-						value={this.state.runPace}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Run Pace: {this.state.runPace} mins/mile
+						</p>
+						<Slider
+							value={this.state.runPace}
+							defaultValue={this.state.runPace}
+							min={8.00}
+							max={14.00}
+							step={.25}
+							onChange={this.handleRunPaceSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
-					<TextField
-						id="textField_walkPace"
-						floatingLabelText="Walk Pace (minutes/mile)"
-						type='number'
-						value={this.state.walkPace}
-						onChange={ event => this.changeInput(event.target)}
-					/>
+					<div style={styles.sliderContainer}>
+						<p style={styles.sliderTitle}>
+							Walk Pace: {this.state.walkPace} mins/mile
+						</p>
+						<Slider
+							value={this.state.walkPace}
+							defaultValue={this.state.walkPace}
+							min={14.00}
+							max={20.00}
+							step={.25}
+							onChange={this.handleWalkPaceSlider.bind(this)}
+							sliderStyle={styles.sliderStyle}
+						/>
+					</div>
 				</div>
 				<div>
 					<TextField
