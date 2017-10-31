@@ -104,9 +104,9 @@ export default class Home extends Component {
 				color: '#666',
 				marginBottom: 5,
 			},
-			sliderStyle: {
+			sliderContainer: {
 				marginBottom: 20,
-				marginTop: 5,
+				// marginTop: 5,
 			},
 			separator: {
 				borderTop: '1px solid #888',
@@ -122,108 +122,118 @@ export default class Home extends Component {
 				<PacerHeader />
 				<div id="raceDistanceDiv" className="row">
 					<div className="col-lg-4 offset-lg-4">
-						<p style={styles.sliderTitle}>
-							Race Distance: {this.state.raceDistance} miles
-						</p>
-						<Slider
-							value={this.state.raceDistance}
-							defaultValue={this.state.raceDistance}
-							min={3.1}
-							max={26.2}
-							step={.1}
-							onChange={this.handleRaceDistSlider.bind(this)}
-							trackStyle={{ backgroundColor: '#555'}}
-							handleStyle={{
-								borderColor: '#555',
-								width: 20,
-								height: 20,
-								marginLeft: -10,
-								marginTop: -8 }}
-						/>
+						<div style={styles.sliderContainer}>
+							<p style={styles.sliderTitle}>
+								Race Distance: {this.state.raceDistance} miles
+							</p>
+							<Slider
+								value={this.state.raceDistance}
+								defaultValue={this.state.raceDistance}
+								min={3.1}
+								max={26.2}
+								step={.1}
+								onChange={this.handleRaceDistSlider.bind(this)}
+								trackStyle={{ backgroundColor: '#555'}}
+								handleStyle={{
+									borderColor: '#555',
+									width: 20,
+									height: 20,
+									marginLeft: -10,
+									marginTop: -8 }}
+							/>
+						</div>
 					</div>
 				</div>
 				<div className="row">
 					<div className="col-lg-4 offset-lg-2">
-						<p style={styles.sliderTitle}>
-							Run Pace: {this.state.runPace} mins/mile
-						</p>
-						<Slider
-							value={this.state.runPace}
-							defaultValue={this.state.runPace}
-							min={8.00}
-							max={14.00}
-							step={.25}
-							onChange={this.handleRunPaceSlider.bind(this)}
-							trackStyle={{ backgroundColor: PacerValues.runColor}}
-							handleStyle={{
-								borderColor: PacerValues.runColor,
-								width: 20,
-								height: 20,
-								marginLeft: -10,
-								marginTop: -8 }}
-						/>
+						<div style={styles.sliderContainer}>
+							<p style={styles.sliderTitle}>
+								Run Pace: {this.state.runPace} mins/mile
+							</p>
+							<Slider
+								value={this.state.runPace}
+								defaultValue={this.state.runPace}
+								min={8.00}
+								max={14.00}
+								step={.25}
+								onChange={this.handleRunPaceSlider.bind(this)}
+								trackStyle={{ backgroundColor: PacerValues.runColor}}
+								handleStyle={{
+									borderColor: PacerValues.runColor,
+									width: 20,
+									height: 20,
+									marginLeft: -10,
+									marginTop: -8 }}
+							/>
+						</div>
 					</div>
 					<div className="col-lg-4">
-						<p style={styles.sliderTitle}>
-							Run Interval: {this.state.runIntervalTime} mins
-						</p>
-						<Slider
-							value={this.state.runIntervalTime}
-							defaultValue={this.state.runIntervalTime}
-							min={0}
-							max={20.00}
-							step={.25}
-							onChange={this.handleRunIntervalSlider.bind(this)}
-							trackStyle={{ backgroundColor: PacerValues.runColor}}
-							handleStyle={{
-								borderColor: PacerValues.runColor,
-								width: 20,
-								height: 20,
-								marginLeft: -10,
-								marginTop: -8 }}
-						/>
+						<div style={styles.sliderContainer}>
+							<p style={styles.sliderTitle}>
+								Run Interval: {this.state.runIntervalTime} mins
+							</p>
+							<Slider
+								value={this.state.runIntervalTime}
+								defaultValue={this.state.runIntervalTime}
+								min={0}
+								max={20.00}
+								step={.25}
+								onChange={this.handleRunIntervalSlider.bind(this)}
+								trackStyle={{ backgroundColor: PacerValues.runColor}}
+								handleStyle={{
+									borderColor: PacerValues.runColor,
+									width: 20,
+									height: 20,
+									marginLeft: -10,
+									marginTop: -8 }}
+							/>
+						</div>
 					</div>
 				</div>
 				<div className="row">
 					<div className="col-lg-4 offset-lg-2">
-						<p style={styles.sliderTitle}>
-							Walk Pace: {this.state.walkPace} mins/mile
-						</p>
-						<Slider
-							value={this.state.walkPace}
-							defaultValue={this.state.walkPace}
-							min={14.00}
-							max={20.00}
-							step={.25}
-							onChange={this.handleWalkPaceSlider.bind(this)}
-							trackStyle={{ backgroundColor: PacerValues.walkColor}}
-							handleStyle={{
-								borderColor: PacerValues.walkColor,
-								width: 20,
-								height: 20,
-								marginLeft: -10,
-								marginTop: -8 }}
-						/>
+						<div style={styles.sliderContainer}>
+							<p style={styles.sliderTitle}>
+								Walk Pace: {this.state.walkPace} mins/mile
+							</p>
+							<Slider
+								value={this.state.walkPace}
+								defaultValue={this.state.walkPace}
+								min={14.00}
+								max={20.00}
+								step={.25}
+								onChange={this.handleWalkPaceSlider.bind(this)}
+								trackStyle={{ backgroundColor: PacerValues.walkColor}}
+								handleStyle={{
+									borderColor: PacerValues.walkColor,
+									width: 20,
+									height: 20,
+									marginLeft: -10,
+									marginTop: -8 }}
+							/>
+						</div>
 					</div>
 					<div className="col-lg-4">
-						<p style={styles.sliderTitle}>
-							Walk Interval: {this.state.walkIntervalTime} mins
-						</p>
-						<Slider
-							value={this.state.walkIntervalTime}
-							defaultValue={this.state.walkIntervalTime}
-							min={0}
-							max={20.00}
-							step={.25}
-							onChange={this.handleWalkIntervalSlider.bind(this)}
-							trackStyle={{ backgroundColor: PacerValues.walkColor}}
-							handleStyle={{
-								borderColor: PacerValues.walkColor,
-								width: 20,
-								height: 20,
-								marginLeft: -10,
-								marginTop: -8 }}
-						/>
+						<div style={styles.sliderContainer}>
+							<p style={styles.sliderTitle}>
+								Walk Interval: {this.state.walkIntervalTime} mins
+							</p>
+							<Slider
+								value={this.state.walkIntervalTime}
+								defaultValue={this.state.walkIntervalTime}
+								min={0}
+								max={20.00}
+								step={.25}
+								onChange={this.handleWalkIntervalSlider.bind(this)}
+								trackStyle={{ backgroundColor: PacerValues.walkColor}}
+								handleStyle={{
+									borderColor: PacerValues.walkColor,
+									width: 20,
+									height: 20,
+									marginLeft: -10,
+									marginTop: -8 }}
+							/>
+						</div>
 					</div>
 				</div>
 				<div className="row">
