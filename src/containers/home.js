@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
-import Slider from 'material-ui/Slider';
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 import PacerHeader from '../components/pacerHeader';
 import ResultPieChart from '../components/resultPieChart';
+
+import PacerValues from '../styles/pacerValues';
 
 export default class Home extends Component {
 	constructor(props) {
@@ -15,23 +18,23 @@ export default class Home extends Component {
 		}
 	}
 
-	handleRaceDistSlider (event, value) {
+	handleRaceDistSlider (value) {
 		this.setState({ raceDistance: value });
 	}
 
-	handleRunPaceSlider (event, value) {
+	handleRunPaceSlider (value) {
 		this.setState({ runPace: value });
 	}
 
-	handleWalkPaceSlider (event, value) {
+	handleWalkPaceSlider (value) {
 		this.setState({ walkPace: value });
 	}
 
-	handleRunIntervalSlider (event, value) {
+	handleRunIntervalSlider (value) {
 		this.setState({ runIntervalTime: value });
 	}
 
-	handleWalkIntervalSlider (event, value) {
+	handleWalkIntervalSlider (value) {
 		this.setState({ walkIntervalTime: value });
 	}
 
@@ -129,7 +132,13 @@ export default class Home extends Component {
 							max={26.2}
 							step={.1}
 							onChange={this.handleRaceDistSlider.bind(this)}
-							sliderStyle={styles.sliderStyle}
+							trackStyle={{ backgroundColor: '#555'}}
+							handleStyle={{
+								borderColor: '#555',
+								width: 20,
+								height: 20,
+								marginLeft: -10,
+								marginTop: -8 }}
 						/>
 					</div>
 				</div>
@@ -145,7 +154,13 @@ export default class Home extends Component {
 							max={14.00}
 							step={.25}
 							onChange={this.handleRunPaceSlider.bind(this)}
-							sliderStyle={styles.sliderStyle}
+							trackStyle={{ backgroundColor: PacerValues.runColor}}
+							handleStyle={{
+								borderColor: PacerValues.runColor,
+								width: 20,
+								height: 20,
+								marginLeft: -10,
+								marginTop: -8 }}
 						/>
 					</div>
 					<div className="col-lg-4">
@@ -159,7 +174,13 @@ export default class Home extends Component {
 							max={20.00}
 							step={.25}
 							onChange={this.handleRunIntervalSlider.bind(this)}
-							sliderStyle={styles.sliderStyle}
+							trackStyle={{ backgroundColor: PacerValues.runColor}}
+							handleStyle={{
+								borderColor: PacerValues.runColor,
+								width: 20,
+								height: 20,
+								marginLeft: -10,
+								marginTop: -8 }}
 						/>
 					</div>
 				</div>
@@ -175,7 +196,13 @@ export default class Home extends Component {
 							max={20.00}
 							step={.25}
 							onChange={this.handleWalkPaceSlider.bind(this)}
-							sliderStyle={styles.sliderStyle}
+							trackStyle={{ backgroundColor: PacerValues.walkColor}}
+							handleStyle={{
+								borderColor: PacerValues.walkColor,
+								width: 20,
+								height: 20,
+								marginLeft: -10,
+								marginTop: -8 }}
 						/>
 					</div>
 					<div className="col-lg-4">
@@ -189,7 +216,13 @@ export default class Home extends Component {
 							max={20.00}
 							step={.25}
 							onChange={this.handleWalkIntervalSlider.bind(this)}
-							sliderStyle={styles.sliderStyle}
+							trackStyle={{ backgroundColor: PacerValues.walkColor}}
+							handleStyle={{
+								borderColor: PacerValues.walkColor,
+								width: 20,
+								height: 20,
+								marginLeft: -10,
+								marginTop: -8 }}
 						/>
 					</div>
 				</div>
