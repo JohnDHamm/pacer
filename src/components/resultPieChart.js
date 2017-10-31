@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 import { PieChart, Pie, Cell } from 'recharts';
 
+import PacerValues from '../styles/pacerValues';
+
 export default class resultPieChart extends Component {
 
 	render() {
 
 		const { data, title, metric, sum, walkSum, runSum } = this.props;
-		const walkColor = '#49bc58';
-		const runColor = '#b22929';
-		const colors = [runColor, walkColor];
+		const colors = [PacerValues.runColor, PacerValues.walkColor];
 
 		const styles = {
 			pieContainer: {
@@ -27,12 +27,12 @@ export default class resultPieChart extends Component {
 			},
 			walkTitle: {
 				fontSize: 20,
-				color: walkColor,
+				color: PacerValues.walkColor,
 				margin: '0 auto'
 			},
 			walkNum: {
 				fontSize: 18,
-				color: walkColor,
+				color: PacerValues.walkColor,
 				margin: '0 auto'
 			},
 			runTitleDiv: {
@@ -42,12 +42,12 @@ export default class resultPieChart extends Component {
 			},
 			runTitle: {
 				fontSize: 20,
-				color: runColor,
+				color: PacerValues.runColor,
 				margin: '0 auto'
 			},
 			runNum: {
 				fontSize: 18,
-				color: runColor,
+				color: PacerValues.runColor,
 				margin: '0 auto'
 			},
 			centerCircle: {
