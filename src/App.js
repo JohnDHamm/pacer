@@ -9,9 +9,6 @@ class App extends Component {
 		return (
 			<MuiThemeProvider>
 				<div className="App">
-					<p className="App-intro">
-						An app to calculate run/walk times and distance to help with race training.
-					</p>
 					<Home />
 				</div>
 			</MuiThemeProvider>

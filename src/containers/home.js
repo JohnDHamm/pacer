@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Slider from 'material-ui/Slider';
+import PacerHeader from '../components/pacerHeader';
 import ResultPieChart from '../components/resultPieChart';
 
 export default class Home extends Component {
@@ -104,7 +105,7 @@ export default class Home extends Component {
 				marginBottom: 20,
 				marginTop: 5,
 			},
-			seperator: {
+			separator: {
 				borderTop: '1px solid #888',
 				borderBottom: '1px solid #888',
 				color: '#888',
@@ -115,6 +116,7 @@ export default class Home extends Component {
 
 		return (
 			<div className="container">
+				<PacerHeader />
 				<div id="raceDistanceDiv" className="row">
 					<div className="col-lg-4 offset-lg-4">
 						<p style={styles.sliderTitle}>
@@ -193,7 +195,7 @@ export default class Home extends Component {
 				</div>
 				<div className="row">
 					<div className="col-12">
-						<div style={styles.seperator}>RESULTS</div>
+						<div style={styles.separator}>RESULTS</div>
 					</div>
 				</div>
 				<div id="resultsDiv" className="row">
