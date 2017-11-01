@@ -3,14 +3,13 @@ import Slider from 'rc-slider';
 import 'rc-slider/assets/index.css';
 import PacerHeader from '../components/pacerHeader';
 import ResultPieChart from '../components/resultPieChart';
-
 import PacerValues from '../styles/pacerValues';
 
 export default class Home extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			runPace: 12.0,
+			runPace: 12,
 			walkPace: 16.0,
 			runIntervalTime: 1.0,
 			walkIntervalTime: 2.5,
@@ -106,7 +105,6 @@ export default class Home extends Component {
 			},
 			sliderContainer: {
 				marginBottom: 20,
-				// marginTop: 5,
 			},
 			separator: {
 				borderTop: '1px solid #888',
@@ -153,8 +151,8 @@ export default class Home extends Component {
 							<Slider
 								value={this.state.runPace}
 								defaultValue={this.state.runPace}
-								min={8.00}
-								max={14.00}
+								min={8}
+								max={14}
 								step={.25}
 								onChange={this.handleRunPaceSlider.bind(this)}
 								trackStyle={{ backgroundColor: PacerValues.runColor}}
